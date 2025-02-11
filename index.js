@@ -13,14 +13,15 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 const corsOptions = {
-    origin: true,
-        // process.env.NODE_ENV === "production"
-        //     ? "https://yourdomain.com"
-        //     : "http://localhost:5057",
+    origin: process.env.NODE_ENV === "production"
+        ? "https://e-commerce-fst-pjc4.vercel.app"  // Your frontend URL
+        : "http://localhost:5057",                  // Local frontend for development
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-}
+};
+
+
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use(cookieParser());
