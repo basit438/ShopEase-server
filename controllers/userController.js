@@ -146,6 +146,10 @@ export async function loginUser(req, res) {
   }
 }
 
+
+// function to register as seller
+
+
 export async function registerSeller(req, res) {
   try {
     const { name, email, password, phone, oldPassword } = req.body;
@@ -229,13 +233,15 @@ export async function registerSeller(req, res) {
   }
 }
 
+// function to logout the user
+
 export async function logoutUser(req, res) {
   try {
     // Clear the cookie named "token"
     res.clearCookie("token", {
       httpOnly: true,
-      secure: false, // Set to true in production (with HTTPS)
-      sameSite: "lax", // Should match the cookie settings used in login
+      secure: true, 
+      sameSite: "none",
     });
 
     return res.status(200).json({ message: "User logged out successfully" });
